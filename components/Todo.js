@@ -21,18 +21,32 @@ class Todo {
     this._todoCheckboxEl.id = `todo-${this._data.id}`;
     this._todoLabel.setAttribute("for", `todo-${this._data.id}`);
   }
+  _generateDate() {
+    this._dueDate = new Date(data.date);
+    if (!isNaN(this._dueDate)) {
+      this._todoDate.textContent = `Due: ${this._dueDate.toLocaleString(
+        "en-US",
+        {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }
+      )}`;
+    }
+  }
 
   getView() {
     this._todoElement = this._templateELement.content
       .querySelector(".todo")
       .cloneNode(true);
     const todoNameEl = this._todoElement.querySelector(".todo__name");
-    const todoDate = this._todoElement.querySelector(".todo__date");
+    this._todoDate = this._todoElement.querySelector(".todo__date");
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
     todoNameEl.textContent = this._data.name;
     this._generateCheckboxEl();
     this._setEventListeners();
+    //this._generateDate();
     return this._todoElement;
   }
 }
