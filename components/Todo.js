@@ -22,7 +22,7 @@ class Todo {
     this._todoLabel.setAttribute("for", `todo-${this._data.id}`);
   }
   _generateDate() {
-    this._dueDate = new Date(data.date);
+    this._dueDate = new Date(this._data.date);
     if (!isNaN(this._dueDate)) {
       this._todoDate.textContent = `Due: ${this._dueDate.toLocaleString(
         "en-US",
@@ -32,6 +32,8 @@ class Todo {
           day: "numeric",
         }
       )}`;
+    } else {
+      this._todoDate.textContent = "";
     }
   }
 
@@ -46,7 +48,7 @@ class Todo {
     todoNameEl.textContent = this._data.name;
     this._generateCheckboxEl();
     this._setEventListeners();
-    //this._generateDate();
+    this._generateDate();
     return this._todoElement;
   }
 }
