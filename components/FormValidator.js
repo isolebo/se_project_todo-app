@@ -62,18 +62,18 @@ class FormValidator {
       });
     });
   }
+  resetValidation = (inputElement) => {
+    this._inputList.forEach(() => {
+      this._hideInputError(inputElement);
+    });
+  };
+
   enableValidation() {
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
     this._setEventListeners();
   }
-
-  //   const resetValidation = (inputElement) => {
-  //     this._inputList.forEach((input) => {
-  //       this._hideInputError(formEl, input, config);
-  //     });
-  //   };
 }
 
 export default FormValidator;
