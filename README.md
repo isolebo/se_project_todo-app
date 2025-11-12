@@ -15,4 +15,4 @@ I used OOP programming methods. Ecapsulation and Modules
 
 This project is deployed on GitHub Pages:
 
-- https://github.com/isolebo/se_project_todo-app
+- /Users/isolebo/Desktop/projects/se_project_todo-app/index.html
