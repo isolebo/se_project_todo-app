@@ -13,7 +13,20 @@ const todosList = document.querySelector(".todos__list");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (evt) => {
+    const name = evt.target.name.value;
+    const dateInput = evt.target.date.value;
+
+    const date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+
+    const id = uuidv4();
+    const values = { name, date, id };
+    const todo = generateTodo(values);
+    todosList.append(todo);
+    console.log(evt.target.name.value);
+    console.log(evt.target.date.value);
+  },
 });
 addTodoPopup.setEventListeners();
 const generateTodo = (data) => {
@@ -50,21 +63,6 @@ addTodoButton.addEventListener("click", () => {
 
 addTodoCloseBtn.addEventListener("click", () => {
   addTodoPopup.close();
-});
-
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const id = uuidv4();
-  const values = { name, date, id };
-  const todo = generateTodo(values);
-  todosList.append(todo);
-  closeModal(addTodoPopupEl);
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
