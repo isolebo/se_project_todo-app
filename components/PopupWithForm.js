@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
+    this._popupForm = this._popupElement.querySelector(".popup__form");
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -11,13 +12,10 @@ class PopupWithForm extends Popup {
     this._inputList = this._popupForm.querySelectorAll(".popup__input");
     const inputValues = {};
     this._inputList.forEach((input) => {
-      //add a key value pair
-      //the khey is input.name and input.value
-      //bracket notioninput.name = "input.value";
       inputValues[input.name] = input.value;
     });
     return inputValues;
-    console.log(this._inputList);
+    // console.log(this._inputList);
   }
 
   setEventListeners() {
