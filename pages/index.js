@@ -32,7 +32,7 @@ const addTodoPopup = new PopupWithForm({
 });
 addTodoPopup.setEventListeners();
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   return todo.getView();
 };
 const renderTodo = (items) => {
@@ -49,15 +49,23 @@ const section = new Section({
   containerSelector: ".todos__list",
 });
 section.renderItems();
-//call section instances render method
 
-// const openModal = (modal) => {
-//   modal.classList.add("popup_visible");
-// };
+const openModal = (modal) => {
+  modal.classList.add("popup_visible");
+};
 
-// const closeModal = (modal) => {
-//   modal.classList.remove("popup_visible");
-// };
+const closeModal = (modal) => {
+  modal.classList.remove("popup_visible");
+};
+function handleCheck(completed) {
+  todoCounter.updateCompleted(completed);
+}
+
+function handleDelete(completed) {
+  if (completed) {
+    todoCounter.updateCompleted(false);
+  }
+}
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
