@@ -8,7 +8,6 @@ class Popup {
   _handleEscapeClose(evt) {
     if (evt.key === "Escape") {
       this.close();
-      console.log("esacpe key pressed");
     }
   }
   open() {
@@ -17,13 +16,16 @@ class Popup {
   }
   close() {
     this._popupElement.classList.remove("popup_visible");
-    console.log("close emethod");
+    document.removeEventListener("keyup", this._handleEscapeClose);
   }
   setEventListeners() {
     this._popupElement.addEventListener("mousedown", (evt) => {
-      if (evt.target === "popup__close" || evt.target === "popup") {
+      if (evt.target === this._popupElement) {
         this.close();
       }
+    });
+    this._popupCloseBtn.addEventListener("click", () => {
+      this.close();
     });
   }
 }

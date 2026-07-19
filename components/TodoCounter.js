@@ -9,19 +9,15 @@ class TodoCounter {
 
   updateCompleted = (increment) => {
     this._completed += increment ? 1 : -1;
-    this._updateText;
+    this._updateText();
   };
 
   updateTotal = (increment) => {
-    // if increment is true, add 1 to this._total. Otherwise,
-    // subtract 1. In either case, call the method to update the
-    // text content.
+    this._total += increment ? 1 : -1;
+    this._updateText();
   };
 
-  // Call the method to update the text content
   _updateText() {
-    // Sets the text content of corresponding text element.
-    // Call this in the constructor, and whenever the counts get updated.
     this._element.textContent = `Showing ${this._completed} out of ${this._total} completed`;
   }
 }
