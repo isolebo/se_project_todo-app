@@ -24,7 +24,6 @@ const addTodoPopup = new PopupWithForm({
     const values = { name, date, id };
 
     const todo = generateTodo(values);
-    todosList.append(todo);
     todoCounter.updateTotal(true);
     newTodoValidator.resetValidation();
     addTodoPopup.close();
